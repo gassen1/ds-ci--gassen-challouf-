@@ -8,9 +8,9 @@ on:
 env:
   DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
   DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
-  REPO_API: api-gateway
-  REPO_CLIENT: client-service
-  REPO_ACCOUNT: account-service
+  REPO_API: ds-api-gateway
+  REPO_CLIENT: ds-client-service
+  REPO_ACCOUNT: ds-account-service
 
 jobs:
   build:
@@ -20,6 +20,10 @@ jobs:
       # 1) Récupération du code
       - name: Checkout repository
         uses: actions/checkout@v4
+
+      # (optionnel mais utile) voir l’architecture sur le runner
+      - name: Show root files
+        run: ls -la
 
       # 2) Installer Java 17
       - name: Set up Java 17
